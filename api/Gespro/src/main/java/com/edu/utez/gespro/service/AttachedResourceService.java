@@ -1,0 +1,30 @@
+package com.edu.utez.gespro.service;
+
+import com.edu.utez.gespro.entity.AttachedResource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.edu.utez.gespro.repository.AttachedResourceRepository;
+
+import java.util.List;
+
+@Service
+public class AttachedResourceService {
+    @Autowired
+    private AttachedResourceRepository attachedResourceRepository;
+
+    public List<AttachedResource> getAll(){
+        return attachedResourceRepository.findAll();
+    }
+
+    public AttachedResource getOne(long id) {
+        return attachedResourceRepository.findById(id).get();
+    }
+
+    public AttachedResource saveOrUpdate(AttachedResource attachedResource) {
+        return attachedResourceRepository.save(attachedResource);
+    }
+
+    public void remove(long id) {
+        attachedResourceRepository.deleteById(id);
+    }
+}
