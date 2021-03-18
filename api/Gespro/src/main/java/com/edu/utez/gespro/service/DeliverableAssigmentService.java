@@ -27,4 +27,6 @@ public class DeliverableAssigmentService {
     public void remove(long id) {
         deliverableAssigmentRespository.deleteById(id);
     }
+
+
 }

@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/avance")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
 public class ProgressController {
 
     @Autowired
@@ -21,6 +22,11 @@ public class ProgressController {
     @GetMapping("/consultarTodos")
     public List<Progress> listAll() {
         return progressService.getAll();
+    }
+
+    @GetMapping("/consultarTerminados")
+    public List<Progress> listAllTrue() {
+        return progressService.getAllTrue();
     }
 
     @GetMapping("/consultaUnica/{id}")
@@ -57,5 +63,11 @@ public class ProgressController {
     @DeleteMapping("/eliminar/{id}")
     public void delete(@PathVariable("id") long id) {
         progressService.remove(id);
+    }
+
+    @GetMapping("/buscarProyecto/{id}")
+    public List<Progress> searchIdProject(@PathVariable("id") long id){
+        System.out.println(id);
+        return progressService.searchByIdProject(id);
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "entregable")
-@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+//@JsonIdentityInfo(scope = Deliverable.class,generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Deliverable implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

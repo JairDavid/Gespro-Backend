@@ -17,6 +17,9 @@ public class ProgressService {
     public List<Progress> getAll(){
         return progressRespository.findAll();
     }
+    public List<Progress> getAllTrue(){
+        return progressRespository.searchAllTrue();
+    }
 
     public Progress getOne(long id) {
         return progressRespository.findById(id).get();
@@ -29,5 +32,9 @@ public class ProgressService {
 
     public void remove(long id) {
         progressRespository.deleteById(id);
+    }
+
+    public List<Progress> searchByIdProject(long id){
+        return progressRespository.searchByIdProject(id);
     }
 }

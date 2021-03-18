@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/adscrito")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
 public class AttachedResourceController {
 
     @Autowired
@@ -19,9 +20,20 @@ public class AttachedResourceController {
         return attachedResourceService.getAll();
     }
 
+    @GetMapping("/todos")
+    public List<AttachedResource> all(){
+        return attachedResourceService.getAllPersonalized();
+    }
+
     @GetMapping("/consultaUnica/{id}")
     public AttachedResource edit(@PathVariable("id") long id){
         return attachedResourceService.getOne(id);
+    }
+
+    @GetMapping("/consultaIdEmpleado/{id}")
+    public List<AttachedResource> getByIdEmp(@PathVariable("id") long id){
+        System.out.println("Si llega el id num: " + id);
+        return attachedResourceService.getByIdEmp(id);
     }
 
     @PostMapping("/guardar")

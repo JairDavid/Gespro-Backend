@@ -8,6 +8,7 @@ import com.edu.utez.gespro.service.DeliverableAssigmentService;
 import java.util.List;
 @RestController
 @RequestMapping("/asignarEntregable")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
 public class DeliverableAssigmentController {
 
     @Autowired
@@ -41,4 +42,5 @@ public class DeliverableAssigmentController {
     public void delete(@PathVariable("id") long id){
         deliverableAssigmentService.remove(id);
     }
+
 }

@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rol")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
 public class RoleController {
     @Autowired
     private RoleService roleService;

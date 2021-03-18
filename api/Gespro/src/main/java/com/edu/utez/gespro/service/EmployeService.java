@@ -32,4 +32,8 @@ public class EmployeService {
     public Employe getByEmail(String email){
         return employeRepository.searchByEmail(email);
     }
+
+    public List<Employe> getAllRolEmploye(){
+        return employeRepository.searchByRol();
+    }
 }

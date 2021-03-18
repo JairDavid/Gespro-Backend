@@ -13,9 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "fase_proyecto")
-@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class ProjectPhase implements Serializable {
+@Table(name = "fase_tipo")
+//@JsonIdentityInfo(scope = TypePhase.class,generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+public class TypePhase implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,14 +26,14 @@ public class ProjectPhase implements Serializable {
     private int percent;
 
     @ManyToOne
-    @JoinColumn(name = "idproyecto")
-    private Project project;
+    @JoinColumn(name = "idtipo")
+    private Type type;
 
     @ManyToOne
     @JoinColumn(name = "idfase")
     private Phase phase;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "projectPhase")
+    @OneToMany(mappedBy = "typePhase")
     private List<DeliverableAssigment> deliverableAssigment;
 }

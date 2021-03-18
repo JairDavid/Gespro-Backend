@@ -13,7 +13,11 @@ public class AttachedResourceService {
     private AttachedResourceRepository attachedResourceRepository;
 
     public List<AttachedResource> getAll(){
-        return attachedResourceRepository.findAll();
+        return (List<AttachedResource>) attachedResourceRepository.findAll();
+    }
+
+    public List<AttachedResource> getAllPersonalized(){
+        return attachedResourceRepository.searchAll();
     }
 
     public AttachedResource getOne(long id) {
@@ -26,5 +30,9 @@ public class AttachedResourceService {
 
     public void remove(long id) {
         attachedResourceRepository.deleteById(id);
+    }
+
+    public List<AttachedResource> getByIdEmp(long id){
+        return attachedResourceRepository.searchByIdEmp(id);
     }
 }

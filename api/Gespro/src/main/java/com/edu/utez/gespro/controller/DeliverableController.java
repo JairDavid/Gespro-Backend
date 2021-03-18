@@ -2,7 +2,6 @@ package com.edu.utez.gespro.controller;
 
 
 import com.edu.utez.gespro.entity.Deliverable;
-import com.edu.utez.gespro.entity.Progress;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/entregable")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
 public class DeliverableController {
     @Autowired
     private DeliverableService deliverableService;

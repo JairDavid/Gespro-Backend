@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tipo")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
 public class TypeController {
     @Autowired
     private TypeService typeService;
@@ -25,16 +26,16 @@ public class TypeController {
         return typeService.getOne(id);
     }
 
-    @PostMapping("/guardar/{id}")
-    public Type save(@RequestBody Type nuevo, @PathVariable("id") long id){
+    @PostMapping("/guardar")
+    public Type save(@RequestBody Type nuevo){
+        return typeService.saveOrUpdate(nuevo);
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public Type update(@RequestBody Type nuevo,@PathVariable("id") long id){
         Type tipo = typeService.getOne(id);
         tipo.setName(nuevo.getName());
         return typeService.saveOrUpdate(tipo);
-    }
-
-    @PutMapping("/actualizar")
-    public Type update(@RequestBody Type type){
-        return typeService.saveOrUpdate(type);
     }
 
     @DeleteMapping("/eliminar/{id}")

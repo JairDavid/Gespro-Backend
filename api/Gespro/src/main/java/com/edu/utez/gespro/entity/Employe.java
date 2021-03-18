@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "empleado")
-@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+//@JsonIdentityInfo(scope = Employe.class,generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Employe implements Serializable {
 
     private static final long serialVersionUID = 1L;

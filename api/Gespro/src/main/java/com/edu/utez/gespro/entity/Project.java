@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -15,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "proyecto")
-@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+//@JsonIdentityInfo(scope = Project.class,generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Project implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,10 +48,6 @@ public class Project implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "project")
     private List<AttachedResource> attachedResource;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "project")
-    private List<ProjectPhase> projectPhase;
 
     @JsonIgnore
     @OneToMany(mappedBy = "project")

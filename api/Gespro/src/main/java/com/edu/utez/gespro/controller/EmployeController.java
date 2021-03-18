@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.edu.utez.gespro.service.EmployeService;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
 @RequestMapping("/empleado")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
 public class EmployeController {
 
     @Autowired
@@ -18,6 +18,11 @@ public class EmployeController {
     @GetMapping("/consultarTodos")
     public List<Employe> listAll(){
         return employeService.getAll();
+    }
+
+    @GetMapping("/rolEmpleado")
+    public List<Employe> listAllEmploye(){
+        return employeService.getAllRolEmploye();
     }
 
     @GetMapping("/consultaUnica/{id}")

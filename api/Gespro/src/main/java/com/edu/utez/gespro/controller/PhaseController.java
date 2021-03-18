@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/fase")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
 public class PhaseController {
 
     @Autowired

@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "asignacion_entregables")
-@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+//@JsonIdentityInfo(scope = DeliverableAssigment.class,generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class DeliverableAssigment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,7 +27,7 @@ public class DeliverableAssigment implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idfase_proyecto")
-    private ProjectPhase projectPhase;
+    private TypePhase typePhase;
 
     @ManyToOne
     @JoinColumn(name = "identregable")

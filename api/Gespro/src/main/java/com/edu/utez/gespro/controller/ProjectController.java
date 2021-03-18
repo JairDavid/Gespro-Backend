@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/proyecto")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
