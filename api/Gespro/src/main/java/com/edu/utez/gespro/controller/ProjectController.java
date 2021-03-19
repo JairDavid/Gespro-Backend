@@ -38,6 +38,8 @@ public class ProjectController {
         existente.setClientName(project.getClientName());
         existente.setDate(project.getDate());
         existente.setCost(project.getCost());
+        existente.setEmploye(project.getEmploye());
+        existente.setType(project.getType());
         return projectService.saveOrUpdate(existente);
     }
 
