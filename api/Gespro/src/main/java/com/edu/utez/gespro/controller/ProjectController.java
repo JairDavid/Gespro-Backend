@@ -29,10 +29,18 @@ public class ProjectController {
         return projectService.saveOrUpdate(project);
     }
 
-    @PutMapping("/actualizar")
-    public Project update(@RequestBody Project project){
-        return projectService.saveOrUpdate(project);
+    @PutMapping("/actualizar/{id}")
+    public Project update(@RequestBody Project project, @PathVariable("id") long id){
+        Project existente = projectService.getOne(id);
+        existente.setName(project.getName());
+        existente.setDuration(project.getDuration());
+        existente.setDescription(project.getDescription());
+        existente.setClientName(project.getClientName());
+        existente.setDate(project.getDate());
+        existente.setCost(project.getCost());
+        return projectService.saveOrUpdate(existente);
     }
+
 
     @DeleteMapping("/eliminar/{id}")
     public void delete(@PathVariable("id") long id){
