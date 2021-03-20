@@ -19,6 +19,10 @@ public class DeliverableAssigmentService {
     public DeliverableAssigment getOne(long id) {
         return deliverableAssigmentRespository.findById(id).get();
     }
+    
+    public DeliverableAssigment getOneDeliverable(long id) {
+        return deliverableAssigmentRespository.selectOneDeliverableAssigment(id);
+    }
 
     public DeliverableAssigment saveOrUpdate(DeliverableAssigment deliverableAssigment) {
         return deliverableAssigmentRespository.save(deliverableAssigment);

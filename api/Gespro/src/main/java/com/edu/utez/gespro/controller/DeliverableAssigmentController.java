@@ -28,6 +28,12 @@ public class DeliverableAssigmentController {
     public DeliverableAssigment save(@RequestBody DeliverableAssigment deliverableAssigment){
         return deliverableAssigmentService.saveOrUpdate(deliverableAssigment);
     }
+    
+    @GetMapping("/faseProyecto/{id}")
+    public DeliverableAssigment getOne(@PathVariable("id") long id){
+        System.out.println("El id es: "  + id);
+        return deliverableAssigmentService.getOneDeliverable(id);
+    }
 
    /* @PutMapping("/actualizar/{id}")
     public DeliverableAssigment update(@RequestBody DeliverableAssigment nuevo, @PathVariable("id") long id){

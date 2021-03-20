@@ -15,6 +15,10 @@ public class ProjectPhaseService {
     public List<TypePhase> getAll(){
         return projectPhaseRepository.findAll();
     }
+    
+    public List<TypePhase> getAllByTypeId(long id){
+        return projectPhaseRepository.selectByIdType(id);
+    }
 
     public TypePhase getOne(long id) {
         return projectPhaseRepository.findById(id).get();
