@@ -23,6 +23,11 @@ public class ProjectController {
     public Project edit(@PathVariable("id") long id){
         return projectService.getOne(id);
     }
+    
+    @GetMapping("/consultaPorNombre/{name}")
+    public Project searchOne(@PathVariable("name") String name){
+        return projectService.getOneByName(name);
+    }
 
     @PostMapping("/guardar")
     public Project save(@RequestBody Project project){
