@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.5.9-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.17-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.0.0.5919
+-- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -10,6 +10,7 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- Volcando estructura de base de datos para gespro
@@ -24,10 +25,10 @@ CREATE TABLE IF NOT EXISTS `asignacion_entregables` (
   `porcentaje` int(11) NOT NULL,
   PRIMARY KEY (`idasignacion_entregables`),
   KEY `FK_Entregable_idx` (`identregable`),
-  KEY `FK_FaseProyecto_idx` (`idfase_proyecto`),
+  KEY `FK_FaseProyecto_idx` (`idfase_proyecto`) USING BTREE,
   CONSTRAINT `FK_Entregable` FOREIGN KEY (`identregable`) REFERENCES `entregable` (`identregable`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_FaseProyecto` FOREIGN KEY (`idfase_proyecto`) REFERENCES `fase_proyecto` (`idfase_proyecto`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_FaseTipoAsignacion` FOREIGN KEY (`idfase_proyecto`) REFERENCES `fase_tipo` (`idfase_proyecto`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -44,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `asignar_adscrito` (
   CONSTRAINT `ID_EMPLEADOINTER` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `ID_PROYECTOINTER` FOREIGN KEY (`idproyecto`) REFERENCES `proyecto` (`idproyecto`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `ID_PUESTOINTER` FOREIGN KEY (`idpuesto`) REFERENCES `puesto` (`idpuesto`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -61,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `avance` (
   KEY `IDASIGNACION_idx` (`idasignacion_entregables`),
   CONSTRAINT `IDASIGNACION` FOREIGN KEY (`idasignacion_entregables`) REFERENCES `asignacion_entregables` (`idasignacion_entregables`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `ID_PROYECTO` FOREIGN KEY (`idproyecto`) REFERENCES `proyecto` (`idproyecto`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -83,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `empleado` (
   UNIQUE KEY `curp_UNIQUE` (`curp`),
   KEY `IDROL_idx` (`idrol`),
   CONSTRAINT `IDROL` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `entregable` (
   `archivo` mediumblob NOT NULL,
   PRIMARY KEY (`identregable`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -104,22 +105,22 @@ CREATE TABLE IF NOT EXISTS `fase` (
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`idfase`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
--- Volcando estructura para tabla gespro.fase_proyecto
-CREATE TABLE IF NOT EXISTS `fase_proyecto` (
+-- Volcando estructura para tabla gespro.fase_tipo
+CREATE TABLE IF NOT EXISTS `fase_tipo` (
   `idfase_proyecto` int(11) NOT NULL AUTO_INCREMENT,
-  `idproyecto` int(11) DEFAULT NULL,
+  `idtipo` int(11) DEFAULT NULL,
   `idfase` int(11) DEFAULT NULL,
   `porcentaje` int(11) NOT NULL,
   PRIMARY KEY (`idfase_proyecto`),
   KEY `FK_FASE_idx` (`idfase`) USING BTREE,
-  KEY `FK_PROYECTO_idx` (`idproyecto`) USING BTREE,
+  KEY `FK_PROYECTO_idx` (`idtipo`) USING BTREE,
   CONSTRAINT `FK_FASE` FOREIGN KEY (`idfase`) REFERENCES `fase` (`idfase`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_PROYECTO` FOREIGN KEY (`idproyecto`) REFERENCES `proyecto` (`idproyecto`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_TIPO` FOREIGN KEY (`idtipo`) REFERENCES `tipo` (`idtipo`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -140,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `proyecto` (
   KEY `IDTIPO_idx` (`idtipo`) USING BTREE,
   CONSTRAINT `IDRESPONSABLE` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idempleado`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `IDTIPO` FOREIGN KEY (`idtipo`) REFERENCES `tipo` (`idtipo`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -149,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `puesto` (
   `idpuesto` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`idpuesto`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -159,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `rol` (
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`idrol`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -169,10 +170,11 @@ CREATE TABLE IF NOT EXISTS `tipo` (
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`idtipo`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
