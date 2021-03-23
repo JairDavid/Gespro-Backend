@@ -24,6 +24,11 @@ public class ProjectPhaseController {
     public List<TypePhase> listAll(@PathVariable("id") long id){
         return projectPhaseService.getAllByTypeId(id);
     }
+    
+    @GetMapping("/tipoPhase/{id}")
+    public List<TypePhase> listAllTypes(@PathVariable("id") long id){
+        return projectPhaseService.getAllByPhaseId(id);
+    }
 
     @GetMapping("/consultaUnica/{id}")
     public TypePhase edit(@PathVariable("id") long id){

@@ -19,7 +19,11 @@ public class ProjectPhaseService {
     public List<TypePhase> getAllByTypeId(long id){
         return projectPhaseRepository.selectByIdType(id);
     }
-
+    
+    public List<TypePhase> getAllByPhaseId(long id){
+        return projectPhaseRepository.selectByIdPhase(id);
+    }
+    
     public TypePhase getOne(long id) {
         return projectPhaseRepository.findById(id).get();
     }

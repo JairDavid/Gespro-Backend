@@ -11,4 +11,7 @@ import org.springframework.data.repository.query.Param;
 public interface ProjectPhaseRepository extends JpaRepository<TypePhase,Long> {
 	@Query(value = "SELECT * FROM fase_tipo WHERE idtipo=:id", nativeQuery = true)
     List<TypePhase> selectByIdType(@Param("id") long id);
+	
+	@Query(value = "SELECT * FROM fase_tipo WHERE idfase=:id", nativeQuery = true)
+    List<TypePhase> selectByIdPhase(@Param("id") long id);
 }
