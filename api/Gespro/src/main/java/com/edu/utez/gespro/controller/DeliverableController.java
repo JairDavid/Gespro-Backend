@@ -68,6 +68,17 @@ public class DeliverableController {
         }
         return deliverableService.saveOrUpdate(deliverable);
     }
+    
+    @PutMapping("/actualizarnombre/{id}")
+    public Deliverable updatename( @PathVariable("id") long id, @RequestBody String name) throws IOException {
+        Deliverable deliverable = deliverableService.getOne(id);
+        try {
+            deliverable.setName(name);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return deliverableService.saveOrUpdate(deliverable);
+    }
 
     @DeleteMapping("/eliminar/{id}")
     public void delete(@PathVariable("id") long id){
