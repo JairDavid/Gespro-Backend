@@ -28,6 +28,9 @@ public class Deliverable implements Serializable {
     @Column(name = "archivo", columnDefinition = "LONGVARBINARY")
     private byte[] file;
 
+    @Column(name = "nombreoriginal")
+    private String originalName;
+
     @JsonIgnore
     @OneToMany(mappedBy = "deliverable")
     private List<DeliverableAssigment> deliverableAssigment;
