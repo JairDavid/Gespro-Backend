@@ -21,7 +21,13 @@ public class LaborService {
         return laborRespository.findById(id).get();
     }
 
-    public Labor saveOrUpdate(Labor labor) {
+    public Labor save(Labor labor) {
+        return laborRespository.save(labor);
+    }
+
+    public Labor update(Labor nuevo, long id) {
+        Labor labor = getOne(id);
+        labor.setName(nuevo.getName());
         return laborRespository.save(labor);
     }
 

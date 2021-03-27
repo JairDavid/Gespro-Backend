@@ -28,14 +28,12 @@ public class PhaseController {
 
     @PostMapping("/guardar")
     public Phase save(@RequestBody Phase phase){
-        return phaseService.saveOrUpdate(phase);
+        return phaseService.save(phase);
     }
 
     @PutMapping("/actualizar/{id}")
     public Phase update(@RequestBody Phase nuevo, @PathVariable("id") long id){
-        Phase phase = phaseService.getOne(id);
-        phase.setName(nuevo.getName());
-        return phaseService.saveOrUpdate(phase);
+        return phaseService.update(nuevo, id);
     }
 
     @DeleteMapping("/eliminar/{id}")

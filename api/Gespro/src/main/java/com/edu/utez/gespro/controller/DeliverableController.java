@@ -40,44 +40,19 @@ public class DeliverableController {
     }
 
     @PostMapping("/guardar")
-    public Deliverable save(@RequestParam("archivo") MultipartFile file, String json) throws IOException {
-        Deliverable deliverable = null;
-        try {
-            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-            deliverable = new ObjectMapper().readValue(json, Deliverable.class);
-            deliverable.setOriginalName(fileName);
-            deliverable.setFile(file.getBytes());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return deliverableService.saveOrUpdate(deliverable);
+    public Deliverable save(@RequestParam("archivo") MultipartFile file, String json){
+        return deliverableService.save(file,json);
     }
 
     @PutMapping("/actualizar/{id}")
     public Deliverable update(@RequestParam("archivo") MultipartFile file, @PathVariable("id") long id, String json) throws IOException {
-        Deliverable deliverable = deliverableService.getOne(id);
-        Deliverable nuevo = null;
-        try {
-            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-            nuevo = new ObjectMapper().readValue(json, Deliverable.class);
-            deliverable.setName(nuevo.getName());
-            deliverable.setOriginalName(fileName);
-            deliverable.setFile(file.getBytes());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return deliverableService.saveOrUpdate(deliverable);
+
+        return deliverableService.update(file, id, json);
     }
     
     @PutMapping("/actualizarnombre/{id}")
     public Deliverable updatename( @PathVariable("id") long id, @RequestBody String name) throws IOException {
-        Deliverable deliverable = deliverableService.getOne(id);
-        try {
-            deliverable.setName(name);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return deliverableService.saveOrUpdate(deliverable);
+        return deliverableService.updateName(id, name);
     }
 
     @DeleteMapping("/eliminar/{id}")

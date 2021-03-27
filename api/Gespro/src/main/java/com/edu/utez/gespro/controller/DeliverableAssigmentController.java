@@ -31,7 +31,6 @@ public class DeliverableAssigmentController {
     
     @GetMapping("/faseProyecto/{id}")
     public DeliverableAssigment getOne(@PathVariable("id") long id){
-        System.out.println("El id es: "  + id);
         return deliverableAssigmentService.getOneDeliverable(id);
     }
 

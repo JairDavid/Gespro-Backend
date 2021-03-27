@@ -32,20 +32,17 @@ public class AttachedResourceController {
 
     @GetMapping("/consultaIdEmpleado/{id}")
     public List<AttachedResource> getByIdEmp(@PathVariable("id") long id){
-        System.out.println("Si llega el id num: " + id);
         return attachedResourceService.getByIdEmp(id);
     }
 
     @PostMapping("/guardar")
     public AttachedResource save(@RequestBody AttachedResource attachedResource){
-        return attachedResourceService.saveOrUpdate(attachedResource);
+        return attachedResourceService.save(attachedResource);
     }
 
     @PutMapping("/actualizar/{id}")
-    public AttachedResource update(@RequestBody AttachedResource attachedResource, @PathVariable("id") long id){
-        AttachedResource existente = attachedResourceService.getOne(id);
-        existente.setLabor(attachedResource.getLabor());
-        return attachedResourceService.saveOrUpdate(existente);
+    public AttachedResource update(@RequestBody AttachedResource nuevo, @PathVariable("id") long id){
+        return attachedResourceService.update(nuevo, id);
     }
 
     @DeleteMapping("/eliminar/{id}")

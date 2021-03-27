@@ -36,28 +36,12 @@ public class ProgressController {
 
     @PostMapping("/guardar")
     public Progress save(@RequestParam("archivo") MultipartFile file, String json) throws IOException {
-        Progress progress = null;
-        try {
-            progress = new ObjectMapper().readValue(json, Progress.class);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return progressService.saveOrUpdate(progress, file);
+        return progressService.save(file, json);
     }
 
     @PutMapping("/actualizar/{id}")
     public Progress update(@RequestParam("archivo") MultipartFile file, String json, @PathVariable("id") long id) throws IOException {
-        Progress progress = progressService.getOne(id);
-        Progress nuevo = null;
-        try {
-            nuevo = new ObjectMapper().readValue(json, Progress.class);
-            progress.setDescription(nuevo.getDescription());
-            progress.setFile(nuevo.getFile());
-            progress.setFinish(nuevo.isFinish());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return progressService.saveOrUpdate(progress, file);
+        return progressService.update(file, json,id);
     }
 
     @DeleteMapping("/eliminar/{id}")
@@ -67,7 +51,6 @@ public class ProgressController {
 
     @GetMapping("/buscarProyecto/{id}")
     public List<Progress> searchIdProject(@PathVariable("id") long id){
-        System.out.println(id);
         return progressService.searchByIdProject(id);
     }
 }

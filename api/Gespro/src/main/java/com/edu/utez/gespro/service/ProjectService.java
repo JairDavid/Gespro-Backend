@@ -20,8 +20,21 @@ public class ProjectService {
         return projectRepository.findById(id).get();
     }
 
-    public Project saveOrUpdate(Project project) {
+    public Project save(Project project) {
         return projectRepository.save(project);
+    }
+
+    public Project update(Project project, long id) {
+        Project existente = getOne(id);
+        existente.setName(project.getName());
+        existente.setDuration(project.getDuration());
+        existente.setDescription(project.getDescription());
+        existente.setClientName(project.getClientName());
+        existente.setDate(project.getDate());
+        existente.setCost(project.getCost());
+        existente.setEmploye(project.getEmploye());
+        existente.setType(project.getType());
+        return projectRepository.save(existente);
     }
 
     public void remove(long id) {

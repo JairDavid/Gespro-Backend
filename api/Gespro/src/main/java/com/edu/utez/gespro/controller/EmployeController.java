@@ -32,21 +32,12 @@ public class EmployeController {
 
     @PostMapping("/guardar")
     public Employe save(@RequestBody Employe employe){
-        return employeService.saveOrUpdate(employe);
+        return employeService.save(employe);
     }
 
     @PutMapping("/actualizar/{id}")
     public Employe update(@RequestBody Employe nuevo, @PathVariable("id") long id){
-        Employe empleado = employeService.getOne(id);
-        empleado.setFirstName(nuevo.getFirstName());
-        empleado.setLastName(nuevo.getLastName());
-        empleado.setAdress(nuevo.getAdress());
-        empleado.setBirthDate(nuevo.getBirthDate());
-        empleado.setPhoneNumber(nuevo.getPhoneNumber());
-        empleado.setCurp(nuevo.getCurp());
-        empleado.setPassword(nuevo.getPassword());
-        empleado.setStatus(nuevo.isStatus());
-        return employeService.saveOrUpdate(empleado);
+        return employeService.update(nuevo, id);
     }
 
     @DeleteMapping("/eliminar/{id}")
@@ -56,7 +47,6 @@ public class EmployeController {
 
     @GetMapping("/correo/{email}")
     public Employe byEmail(@PathVariable("email") String correo){
-        System.out.println(correo);
          return employeService.getByEmail(correo);
     }
 }

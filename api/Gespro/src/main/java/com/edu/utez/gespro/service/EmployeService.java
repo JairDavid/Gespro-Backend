@@ -21,9 +21,22 @@ public class EmployeService {
         return employeRepository.findById(id).get();
     }
 
-    public Employe saveOrUpdate(Employe employe) {
+    public Employe save(Employe employe) {
         return employeRepository.save(employe);
     }
+
+    public Employe update(Employe nuevo, long id) {
+        Employe empleado = getOne(id);
+        empleado.setFullName(nuevo.getFullName());
+        empleado.setAdress(nuevo.getAdress());
+        empleado.setBirthDate(nuevo.getBirthDate());
+        empleado.setPhoneNumber(nuevo.getPhoneNumber());
+        empleado.setCurp(nuevo.getCurp());
+        empleado.setPassword(nuevo.getPassword());
+        empleado.setStatus(nuevo.isStatus());
+        return employeRepository.save(empleado);
+    }
+
 
     public void remove(long id) {
         employeRepository.deleteById(id);

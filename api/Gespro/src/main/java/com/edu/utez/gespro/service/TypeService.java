@@ -20,8 +20,14 @@ public class TypeService {
         return typeRepository.findById(id).get();
     }
 
-    public Type saveOrUpdate(Type type) {
+    public Type save(Type type) {
         return typeRepository.save(type);
+    }
+
+    public Type update(Type nuevo, long id) {
+        Type tipo = getOne(id);
+        tipo.setName(nuevo.getName());
+        return typeRepository.save(tipo);
     }
 
     public void remove(long id) {

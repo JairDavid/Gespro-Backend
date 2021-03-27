@@ -24,8 +24,14 @@ public class AttachedResourceService {
         return attachedResourceRepository.findById(id).get();
     }
 
-    public AttachedResource saveOrUpdate(AttachedResource attachedResource) {
+    public AttachedResource save(AttachedResource attachedResource) {
         return attachedResourceRepository.save(attachedResource);
+    }
+
+    public AttachedResource update(AttachedResource nuevo, long id){
+        AttachedResource existente = getOne(id);
+        existente.setLabor(nuevo.getLabor());
+        return attachedResourceRepository.save(existente);
     }
 
     public void remove(long id) {

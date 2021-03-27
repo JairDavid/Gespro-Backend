@@ -20,7 +20,13 @@ public class PhaseService {
         return phaseRespository.findById(id).get();
     }
 
-    public Phase saveOrUpdate(Phase phase) {
+    public Phase save(Phase phase) {
+        return phaseRespository.save(phase);
+    }
+
+    public Phase update(Phase nuevo, long id) {
+        Phase phase = getOne(id);
+        phase.setName(nuevo.getName());
         return phaseRespository.save(phase);
     }
 

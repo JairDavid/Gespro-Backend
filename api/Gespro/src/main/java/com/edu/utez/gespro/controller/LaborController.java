@@ -26,14 +26,12 @@ public class LaborController {
 
     @PostMapping("/guardar")
     public Labor save(@RequestBody Labor labor){
-        return laborService.saveOrUpdate(labor);
+        return laborService.save(labor);
     }
 
     @PutMapping("/actualizar/{id}")
     public Labor update(@RequestBody Labor nuevo, @PathVariable("id") long id){
-        Labor labor = laborService.getOne(id);
-        labor.setName(nuevo.getName());
-        return laborService.saveOrUpdate(labor);
+        return laborService.update(nuevo, id);
     }
 
     @DeleteMapping("/eliminar/{id}")

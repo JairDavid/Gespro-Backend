@@ -23,11 +23,8 @@ public class Employe implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idempleado")
     private long id;
-
-    @Column(name = "nombre")
-    private String firstName;
-    @Column(name = "apellido")
-    private String lastName;
+    @Column(name = "nombrecompleto")
+    private String fullName;
     @Column(name = "fechaN")
     private String birthDate;
     @Column(name = "telefono")

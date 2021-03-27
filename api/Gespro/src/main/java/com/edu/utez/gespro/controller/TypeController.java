@@ -28,14 +28,12 @@ public class TypeController {
 
     @PostMapping("/guardar")
     public Type save(@RequestBody Type nuevo){
-        return typeService.saveOrUpdate(nuevo);
+        return typeService.save(nuevo);
     }
 
     @PutMapping("/actualizar/{id}")
     public Type update(@RequestBody Type nuevo,@PathVariable("id") long id){
-        Type tipo = typeService.getOne(id);
-        tipo.setName(nuevo.getName());
-        return typeService.saveOrUpdate(tipo);
+        return typeService.update(nuevo, id);
     }
 
     @DeleteMapping("/eliminar/{id}")

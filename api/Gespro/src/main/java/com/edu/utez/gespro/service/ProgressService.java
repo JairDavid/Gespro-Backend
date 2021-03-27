@@ -1,6 +1,7 @@
 package com.edu.utez.gespro.service;
 
 import com.edu.utez.gespro.entity.Progress;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,8 +26,28 @@ public class ProgressService {
         return progressRespository.findById(id).get();
     }
 
-    public Progress saveOrUpdate(Progress progress, MultipartFile file) throws IOException {
+    public Progress save(MultipartFile file, String json) throws IOException {
+        Progress progress = null;
+        try {
+            progress = new ObjectMapper().readValue(json, Progress.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         progress.setFile(file.getBytes());
+        return progressRespository.save(progress);
+    }
+
+    public Progress update(MultipartFile file, String json, long id){
+        Progress progress = getOne(id);
+        Progress nuevo = null;
+        try {
+            nuevo = new ObjectMapper().readValue(json, Progress.class);
+            progress.setDescription(nuevo.getDescription());
+            progress.setFile(file.getBytes());
+            progress.setFinish(nuevo.isFinish());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return progressRespository.save(progress);
     }
 
