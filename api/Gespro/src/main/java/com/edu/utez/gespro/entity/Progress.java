@@ -28,6 +28,9 @@ public class Progress implements Serializable {
     
     @Column(name = "nombreoriginal")
     private String originalName;
+    
+    @Column(name = "mime")
+    private String mime;
 
     @Column(name = "terminado")
     private boolean finish;

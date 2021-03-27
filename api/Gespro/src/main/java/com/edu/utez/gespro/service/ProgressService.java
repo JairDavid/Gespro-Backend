@@ -34,6 +34,7 @@ public class ProgressService {
             progress = new ObjectMapper().readValue(json, Progress.class);
             progress.setOriginalName(fileName);
             progress.setFile(file.getBytes());
+            progress.setMime(file.getContentType());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -49,6 +50,7 @@ public class ProgressService {
             progress.setDescription(nuevo.getDescription());
             progress.setFile(file.getBytes());
             progress.setFinish(nuevo.isFinish());
+            progress.setMime(file.getContentType());
         }catch (Exception e){
             e.printStackTrace();
         }

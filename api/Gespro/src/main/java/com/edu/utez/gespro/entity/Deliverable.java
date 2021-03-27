@@ -30,7 +30,10 @@ public class Deliverable implements Serializable {
 
     @Column(name = "nombreoriginal")
     private String originalName;
-
+    
+    @Column(name = "mime")
+    private String mime;
+    
     @JsonIgnore
     @OneToMany(mappedBy = "deliverable")
     private List<DeliverableAssigment> deliverableAssigment;

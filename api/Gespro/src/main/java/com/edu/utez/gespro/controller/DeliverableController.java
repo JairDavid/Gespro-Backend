@@ -46,7 +46,6 @@ public class DeliverableController {
 
     @PutMapping("/actualizar/{id}")
     public Deliverable update(@RequestParam("archivo") MultipartFile file, @PathVariable("id") long id, String json) throws IOException {
-
         return deliverableService.update(file, id, json);
     }
     

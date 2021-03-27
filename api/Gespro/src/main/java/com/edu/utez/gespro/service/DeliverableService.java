@@ -32,6 +32,7 @@ public class DeliverableService {
             deliverable = new ObjectMapper().readValue(json, Deliverable.class);
             deliverable.setOriginalName(fileName);
             deliverable.setFile(file.getBytes());
+            deliverable.setMime(file.getContentType());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -47,6 +48,7 @@ public class DeliverableService {
             deliverable.setName(nuevo.getName());
             deliverable.setOriginalName(fileName);
             deliverable.setFile(file.getBytes());
+            deliverable.setMime(file.getContentType());
         }catch (Exception e){
             e.printStackTrace();
         }
