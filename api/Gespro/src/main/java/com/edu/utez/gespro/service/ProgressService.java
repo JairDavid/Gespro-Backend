@@ -4,6 +4,7 @@ import com.edu.utez.gespro.entity.Progress;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import com.edu.utez.gespro.repository.ProgressRespository;
 
@@ -29,7 +30,10 @@ public class ProgressService {
     public Progress save(MultipartFile file, String json) throws IOException {
         Progress progress = null;
         try {
+        	String fileName = StringUtils.cleanPath(file.getOriginalFilename());
             progress = new ObjectMapper().readValue(json, Progress.class);
+            progress.setOriginalName(fileName);
+            progress.setFile(file.getBytes());
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -25,6 +25,9 @@ public class Progress implements Serializable {
 
     @Column(name = "archivo",columnDefinition = "LONGVARBINARY")
     private byte[] file;
+    
+    @Column(name = "nombreoriginal")
+    private String originalName;
 
     @Column(name = "terminado")
     private boolean finish;
