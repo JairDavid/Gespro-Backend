@@ -25,6 +25,11 @@ public class PhaseController {
     public Phase edit(@PathVariable("id") long id){
         return phaseService.getOne(id);
     }
+    
+    @GetMapping("/consultaNombre/{name}")
+    public boolean getName(@PathVariable("name") String name){
+        return phaseService.getName(name);
+    }
 
     @PostMapping("/guardar")
     public Phase save(@RequestBody Phase phase){

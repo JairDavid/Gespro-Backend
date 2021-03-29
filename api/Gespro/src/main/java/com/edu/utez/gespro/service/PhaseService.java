@@ -23,7 +23,19 @@ public class PhaseService {
     public Phase save(Phase phase) {
         return phaseRespository.save(phase);
     }
-
+    
+    public boolean getName(String name) {
+    	try {
+    		Phase dato = phaseRespository.searchByName(name);
+    		if(dato.getName() != null || dato.getName()!="") {
+    			return true;
+    		}
+    		return false;
+    	}catch (Exception e) {
+    		return false;
+		}
+    }
+    
     public Phase update(Phase nuevo, long id) {
         Phase phase = getOne(id);
         phase.setName(nuevo.getName());
