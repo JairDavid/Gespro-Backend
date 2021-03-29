@@ -4,6 +4,8 @@ package com.edu.utez.gespro.controller;
 import com.edu.utez.gespro.entity.Progress;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.edu.utez.gespro.service.ProgressService;
@@ -37,6 +39,14 @@ public class ProgressController {
     @PostMapping("/guardar")
     public Progress save(@RequestParam("archivo") MultipartFile file, String json) throws IOException {
         return progressService.save(file, json);
+    }
+
+    @GetMapping("/descargar/{id}")
+    public ResponseEntity<byte[]> getFile(@PathVariable("id")long id){
+        Progress progress = progressService.getOne(id);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + progress.getOriginalName() + "\"")
+                .body(progress.getFile());
     }
 
     @PutMapping("/actualizar/{id}")
