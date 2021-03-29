@@ -23,8 +23,18 @@ public class DeliverableService {
     public Deliverable getOne(long id) {
         return deliverableRepository.findById(id).get();
     }
-
-
+    
+    public boolean getName(String name) {
+    	try {
+    		Deliverable dato = deliverableRepository.searchByName(name);
+    		if(dato.getName() != null || dato.getName()!="") {
+    			return true;
+    		}
+    		return false;
+    	}catch (Exception e) {
+    		return false;
+		}
+    }
     public Deliverable save(MultipartFile file, String json) {
         Deliverable deliverable = null;
         try {

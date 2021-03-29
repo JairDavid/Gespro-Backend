@@ -30,6 +30,11 @@ public class DeliverableController {
     public Deliverable edit(@PathVariable("id") long id){
         return deliverableService.getOne(id);
     }
+    
+    @GetMapping("/consultaNombre/{name}")
+    public boolean getName(@PathVariable("name") String name){
+        return deliverableService.getName(name);
+    }
 
     @GetMapping("/descargar/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable("id")long id){
