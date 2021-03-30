@@ -22,6 +22,7 @@ public class EmployeService {
     }
 
     public Employe save(Employe employe) {
+        employe.setPassword(employe.getEmail());
         return employeRepository.save(employe);
     }
 
@@ -37,13 +38,16 @@ public class EmployeService {
         return employeRepository.save(empleado);
     }
 
-
     public void remove(long id) {
         employeRepository.deleteById(id);
     }
 
     public Employe getByEmail(String email){
         return employeRepository.searchByEmail(email);
+    }
+
+    public Employe getByCurp(String curp){
+        return employeRepository.searchByCurp(curp);
     }
 
     public List<Employe> getAllRolEmploye(){

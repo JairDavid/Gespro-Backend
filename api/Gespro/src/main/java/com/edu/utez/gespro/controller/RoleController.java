@@ -17,7 +17,9 @@ public class RoleController {
 
     @GetMapping("/consultarTodos")
     public List<Role> listAll(){
+        System.out.println("Si llego");
         return roleService.getAll();
+
     }
 
     @GetMapping("/consultaUnica/{id}")

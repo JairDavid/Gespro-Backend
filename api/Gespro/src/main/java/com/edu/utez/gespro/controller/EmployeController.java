@@ -40,6 +40,7 @@ public class EmployeController {
         return employeService.update(nuevo, id);
     }
 
+
     @DeleteMapping("/eliminar/{id}")
     public void delete(@PathVariable("id") long id){
         employeService.remove(id);
@@ -48,5 +49,11 @@ public class EmployeController {
     @GetMapping("/correo/{email}")
     public Employe byEmail(@PathVariable("email") String correo){
          return employeService.getByEmail(correo);
+    }
+
+    @GetMapping("/consultaCurp/{curp}")
+    public Employe byCurp(@PathVariable("curp")String curp){
+        System.out.println("AQUI ESTOY");
+        return employeService.getByCurp(curp);
     }
 }
