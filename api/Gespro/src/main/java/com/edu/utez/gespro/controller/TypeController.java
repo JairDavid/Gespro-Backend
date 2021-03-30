@@ -26,6 +26,10 @@ public class TypeController {
         return typeService.getOne(id);
     }
 
+    @GetMapping("/consultarNoAsignados")
+    public List<Type> getNotAssigned(){
+        return typeService.getNotAssigned();
+    }
     @PostMapping("/guardar")
     public Type save(@RequestBody Type nuevo){
         return typeService.save(nuevo);

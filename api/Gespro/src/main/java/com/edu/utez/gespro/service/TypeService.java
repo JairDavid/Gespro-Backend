@@ -30,6 +30,10 @@ public class TypeService {
         return typeRepository.save(tipo);
     }
 
+    public List<Type> getNotAssigned(){
+        return typeRepository.getNotAssigned();
+    }
+
     public void remove(long id) {
         typeRepository.deleteById(id);
     }
