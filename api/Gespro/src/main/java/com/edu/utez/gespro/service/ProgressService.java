@@ -56,6 +56,15 @@ public class ProgressService {
         }
         return progressRespository.save(progress);
     }
+    
+    public Progress searchFinish(long idP, long idA){
+        Progress buscar = progressRespository.searchFinish(idP, idA);
+        if (buscar == null) {
+            return null;
+        } else {
+            return buscar;
+        }
+    }
 
     public void remove(long id) {
         progressRespository.deleteById(id);

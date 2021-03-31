@@ -14,4 +14,7 @@ public interface ProgressRespository extends JpaRepository<Progress, Long> {
 
     @Query(value = "SELECT * FROM avance WHERE terminado=1", nativeQuery = true)
     public List<Progress> searchAllTrue();
+    
+    @Query(value = "SELECT * FROM avance WHERE idproyecto=:idP and idasignacion_entregables=:idA and terminado=1", nativeQuery = true)
+    public Progress searchFinish(@Param("idP") long idP, @Param("idA") long idA);
 }

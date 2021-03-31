@@ -30,6 +30,11 @@ public class ProgressController {
     public List<Progress> listAllTrue() {
         return progressService.getAllTrue();
     }
+    
+    @GetMapping("/terminado/{idproyecto}/{idasignacion}")
+    public Progress finish(@PathVariable("idproyecto") long idP, @PathVariable("idasignacion") long idA){
+        return progressService.searchFinish(idP, idA);
+    }
 
     @GetMapping("/consultaUnica/{id}")
     public Progress edit(@PathVariable("id") long id) {
