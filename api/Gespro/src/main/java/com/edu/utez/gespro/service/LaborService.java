@@ -34,4 +34,8 @@ public class LaborService {
     public void remove(long id) {
         laborRespository.deleteById(id);
     }
+
+    public Labor searchByName(String name){
+        return laborRespository.searchByName(name);
+    }
 }

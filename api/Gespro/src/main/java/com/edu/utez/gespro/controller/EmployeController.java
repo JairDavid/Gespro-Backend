@@ -30,6 +30,11 @@ public class EmployeController {
         return employeService.getOne(id);
     }
 
+    @GetMapping("/buscaCurp/{curp}")
+    public boolean buscaCurp(@PathVariable("curp") String curp){
+        return employeService.searchCurp(curp);
+    }
+
     @PostMapping("/guardar")
     public Employe save(@RequestBody Employe employe){
         return employeService.save(employe);
@@ -53,7 +58,6 @@ public class EmployeController {
 
     @GetMapping("/consultaCurp/{curp}")
     public Employe byCurp(@PathVariable("curp")String curp){
-        System.out.println("AQUI ESTOY");
         return employeService.getByCurp(curp);
     }
 }
