@@ -30,8 +30,8 @@ public class DeliverableAssigmentController {
     }
     
     @GetMapping("/faseProyecto/{id}")
-    public DeliverableAssigment getOne(@PathVariable("id") long id){
-        return deliverableAssigmentService.getOneDeliverable(id);
+    public List<DeliverableAssigment>  getOne(@PathVariable("id") long id){
+        return deliverableAssigmentService.getAllDeliverable(id);
     }
 
    /* @PutMapping("/actualizar/{id}")

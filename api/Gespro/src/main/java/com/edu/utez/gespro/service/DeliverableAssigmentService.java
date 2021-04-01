@@ -20,8 +20,8 @@ public class DeliverableAssigmentService {
         return deliverableAssigmentRespository.findById(id).get();
     }
     
-    public DeliverableAssigment getOneDeliverable(long id) {
-        return deliverableAssigmentRespository.selectOneDeliverableAssigment(id);
+    public List<DeliverableAssigment> getAllDeliverable(long id) {
+        return deliverableAssigmentRespository.selectAllDeliverableAssigment(id);
     }
 
     public DeliverableAssigment saveOrUpdate(DeliverableAssigment deliverableAssigment) {
