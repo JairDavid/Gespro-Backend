@@ -38,4 +38,17 @@ public class LaborService {
     public Labor searchByName(String name){
         return laborRespository.searchByName(name);
     }
+
+    public boolean getName(String name){
+        try{
+            Labor dato=laborRespository.searchByName(name);
+            if(dato.getName()!=null|| dato.getName()!=""){
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

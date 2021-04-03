@@ -22,9 +22,8 @@ public class EmployeService {
     }
 
     public Employe save(Employe employe) {
-        employe.setPassword(employe.getEmail().toLowerCase());
+        employe.setPassword(employe.getEmail());
         employe.setCurp(employe.getCurp().toUpperCase());
-        employe.setEmail(employe.getEmail().toLowerCase());
         return employeRepository.save(employe);
     }
 

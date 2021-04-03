@@ -43,4 +43,9 @@ public class LaborController {
     public void delete(@PathVariable("id") long id){
         laborService.remove(id);
     }
+
+    @GetMapping("/consultaPorNombre/{name}")
+    public boolean getName(@PathVariable("name") String name){
+        return laborService.getName(name);
+    }
 }
