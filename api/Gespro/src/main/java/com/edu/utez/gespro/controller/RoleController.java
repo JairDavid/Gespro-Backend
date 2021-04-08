@@ -18,6 +18,7 @@ public class RoleController {
     @GetMapping("/consultarTodos")
     public List<Role> listAll(){
         return roleService.getAll();
+
     }
 
     @GetMapping("/consultaUnica/{id}")

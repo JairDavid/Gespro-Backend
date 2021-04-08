@@ -24,11 +24,6 @@ public class LaborController {
         return laborService.getOne(id);
     }
 
-    @GetMapping("/consultaNombre/{name}")
-    public Labor searchByName(@PathVariable ("name") String name){
-        return laborService.searchByName(name);
-    }
-
     @PostMapping("/guardar")
     public Labor save(@RequestBody Labor labor){
         return laborService.save(labor);
@@ -48,4 +43,5 @@ public class LaborController {
     public boolean getName(@PathVariable("name") String name){
         return laborService.getName(name);
     }
+
 }

@@ -17,7 +17,4 @@ public interface EmployeRepository extends JpaRepository<Employe,Long> {
 
     @Query(value = "SELECT * FROM empleado where curp=:curp", nativeQuery = true)
     Employe searchByCurp(@Param("curp")String curp);
-
-    @Query(value = "SELECT * FROM empleado where curp=:curp", nativeQuery = true)
-    boolean searchCurp(@Param("curp")String curp);
 }

@@ -35,10 +35,6 @@ public class LaborService {
         laborRespository.deleteById(id);
     }
 
-    public Labor searchByName(String name){
-        return laborRespository.searchByName(name);
-    }
-
     public boolean getName(String name){
         try{
             Labor dato=laborRespository.searchByName(name);
@@ -51,4 +47,5 @@ public class LaborService {
             return false;
         }
     }
+
 }
