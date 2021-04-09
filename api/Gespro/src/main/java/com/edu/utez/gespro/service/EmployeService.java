@@ -23,6 +23,7 @@ public class EmployeService {
 
     public Employe save(Employe employe) {
         employe.setPassword(employe.getEmail());
+        employe.setCurp(employe.getCurp().toUpperCase());
         return employeRepository.save(employe);
     }
 
@@ -32,7 +33,7 @@ public class EmployeService {
         empleado.setAdress(nuevo.getAdress());
         empleado.setBirthDate(nuevo.getBirthDate());
         empleado.setPhoneNumber(nuevo.getPhoneNumber());
-        empleado.setCurp(nuevo.getCurp());
+        empleado.setCurp(nuevo.getCurp().toUpperCase());
         empleado.setPassword(nuevo.getPassword());
         empleado.setStatus(nuevo.isStatus());
         return employeRepository.save(empleado);
