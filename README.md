@@ -1,3 +1,3 @@
 # GesproBackend
 
-Backend service to Gespro web application.
+Backend Service to Gespro web application.
